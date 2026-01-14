@@ -45,3 +45,6 @@ sheetbrain = [
     # Optional dependencies for enhanced functionality
     "python-dotenv>=1.0.0"
 ]
+
+[tool.setuptools.packages.find]
+where = ['core', 'misc', 'config', 'modules', 'SheetBench']
