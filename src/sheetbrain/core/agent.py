@@ -13,11 +13,11 @@ from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 
 from sheetbrain.config.settings import Config
-from modules.understanding import UnderstandingModule
-from modules.execution import ExecutionModule
-from modules.validation import ValidationModule
-from utils.excel_toolkit import ExcelToolkit, calculate_token_cost_line
-from utils.logger import setup_logger
+from sheetbrain.modules.understanding import UnderstandingModule
+from sheetbrain.modules.execution import ExecutionModule
+from sheetbrain.modules.validation import ValidationModule
+from sheetbrain.utils.excel_toolkit import ExcelToolkit, calculate_token_cost_line
+from sheetbrain.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 
