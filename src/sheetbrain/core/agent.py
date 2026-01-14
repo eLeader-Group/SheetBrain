@@ -12,7 +12,7 @@ from openai import OpenAI
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 
-from config.settings import Config
+from sheetbrain.config.settings import Config
 from modules.understanding import UnderstandingModule
 from modules.execution import ExecutionModule
 from modules.validation import ValidationModule
