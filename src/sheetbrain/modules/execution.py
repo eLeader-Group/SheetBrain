@@ -13,7 +13,7 @@ from typing import Dict, Any, Optional, Tuple
 
 from openai import RateLimitError
 
-from utils.logger import setup_logger
+from sheetbrain.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 

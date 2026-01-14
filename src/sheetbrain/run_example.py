@@ -13,8 +13,8 @@ import os
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from core.agent import SheetBrain
-# from config.settings import Config  # Uncomment if using custom configuration  
+from sheetbrain.core.agent import SheetBrain
+# from sheetbrain.config.settings import Config  # Uncomment if using custom configuration
 
 
 def main():

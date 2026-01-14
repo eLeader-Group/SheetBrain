@@ -7,8 +7,8 @@ import argparse
 import sys
 from typing import Optional
 
-from core.agent import SheetBrain
-from config.settings import Config
+from sheetbrain.core.agent import SheetBrain
+from sheetbrain.config.settings import Config
 
 
 def main():
