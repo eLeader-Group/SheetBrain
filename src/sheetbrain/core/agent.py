@@ -21,6 +21,21 @@ from sheetbrain.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 
+class ModelClient:
+    def __init__(self, model_client):
+        self.model_client = model_client
+
+    @property
+    async def chat(self):
+        return self
+
+    @property
+    async def completions(self):
+        return self
+
+    async def create(self, model, messages):
+        return self.model_client.ainvoke(messages)
+
 
 class SheetBrain:
     """
@@ -29,6 +44,7 @@ class SheetBrain:
     """
 
     def __init__(self, excel_path: str, config: Optional[Config] = None,
+                 model_client: Optional[ModelClient] = None,
                  total_token_budget: int = 10000,
                  load_excel: bool = True, excel_context_understanding: Optional[str] = None,
                  excel_context_execution: Optional[str] = None):
@@ -49,10 +65,13 @@ class SheetBrain:
         self.load_excel = load_excel
 
         # Initialize OpenAI client
-        self.client = OpenAI(
-            api_key=self.config.api_key,
-            base_url=self.config.base_url
-        )
+        if model_client is None:
+            self.client = OpenAI(
+                api_key=self.config.api_key,
+                base_url=self.config.base_url
+            )
+        else:
+            self.client = model_client
 
         # Initialize code execution environment
         self.code_globals = {
