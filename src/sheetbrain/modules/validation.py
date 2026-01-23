@@ -31,7 +31,7 @@ class ValidationModule:
         self.deployment = deployment
         self.excel_context_understanding = excel_context_understanding
 
-    def reflect(self, execution_result: Dict[str, Any], user_question: str, understanding_output: str) -> Dict[str, Any]:
+    async def reflect(self, execution_result: Dict[str, Any], user_question: str, understanding_output: str) -> Dict[str, Any]:
         """
         Reflect on and validate the execution results.
 
@@ -54,7 +54,7 @@ class ValidationModule:
 
         # Get validation analysis
         try:
-            validation_analysis = self._get_llm_response(messages)
+            validation_analysis = await self._get_llm_response(messages)
 
             # Parse the validation response
             validation_result = self._parse_validation_response(validation_analysis)
@@ -239,13 +239,13 @@ Please be thorough and objective in your assessment. If issues are found, focus 
 
         return "\n".join(formatted_parts)
 
-    def _get_llm_response(self, messages: list, max_retries: int = 5) -> str:
+    async def _get_llm_response(self, messages: list, max_retries: int = 5) -> str:
         """Get response from the LLM with retry logic."""
         last_exception = None
 
         for attempt in range(max_retries):
             try:
-                response = self.client.chat.completions.create(
+                response = await self.client.chat.completions.create(
                     model=self.deployment,
                     messages=messages,
                 )

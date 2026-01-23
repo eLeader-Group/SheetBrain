@@ -26,11 +26,11 @@ class ModelClient:
         self.model_client = model_client
 
     @property
-    async def chat(self):
+    def chat(self):
         return self
 
     @property
-    async def completions(self):
+    def completions(self):
         return self
 
     async def create(self, model, messages):
@@ -193,7 +193,7 @@ Please address these specific points in your new analysis approach."""
                 else:
                     enhanced_understanding = understanding_output
 
-                execution_result = self.execution_module.run(enhanced_understanding, user_question)
+                execution_result = await self.execution_module.run(enhanced_understanding, user_question)
                 execution_duration = time.time() - execution_start_time
                 all_execution_results.append(execution_result)
 
@@ -209,7 +209,7 @@ Please address these specific points in your new analysis approach."""
                     print("-" * 40)
                     validation_start_time = time.time()
 
-                    validation_result = self.validation_module.reflect(execution_result, user_question, understanding_output)
+                    validation_result = await self.validation_module.reflect(execution_result, user_question, understanding_output)
                     validation_duration = time.time() - validation_start_time
                     all_validation_results.append(validation_result)
 

@@ -187,7 +187,7 @@ Please start by exploring the data structure and then work toward answering the 
 
         return {"role": "user", "content": user_content}
 
-    def run(self, understanding_output: str, user_question: str, max_turns: int = 20) -> Dict[str, Any]:
+    async def run(self, understanding_output: str, user_question: str, max_turns: int = 20) -> Dict[str, Any]:
         """
         Run the execution module with understanding context and user question.
 
@@ -212,7 +212,7 @@ Please start by exploring the data structure and then work toward answering the 
             logger.info(f"Execution turn {turn + 1}")
 
             try:
-                response_message = self._get_llm_response()
+                response_message = await self._get_llm_response()
                 self.conversation_history.append(response_message)
 
                 # Parse response for code action or final answer
@@ -372,13 +372,13 @@ Please start by exploring the data structure and then work toward answering the 
         else:
             return result[:10000] + "\n⚠️ **[OUTPUT TRUNCATED]** ⚠️\n"
 
-    def _get_llm_response(self, max_retries: int = 5, base_delay: float = 1.0):
+    async def _get_llm_response(self, max_retries: int = 5, base_delay: float = 1.0):
         """Get response from OpenAI with retry logic."""
         last_exception = None
 
         for attempt in range(max_retries):
             try:
-                response = self.client.chat.completions.create(
+                response = await self.client.chat.completions.create(
                     model=self.deployment,
                     messages=self.conversation_history,
                 )
