@@ -115,7 +115,7 @@ class SheetBrain:
             self.client, self.config.deployment, self.excel_context_understanding
         )
 
-    def run(self, user_question: str, table_image: Optional[Image.Image] = None,
+    async def run(self, user_question: str, table_image: Optional[Image.Image] = None,
             max_turns: Optional[int] = None, enable_validation: Optional[bool] = None,
             enable_understanding: Optional[bool] = None) -> Dict[str, Any]:
         """
@@ -152,7 +152,7 @@ class SheetBrain:
                 print("-" * 40)
                 understanding_start_time = time.time()
 
-                understanding_output = self.understanding_module.analyze(user_question, table_image)
+                understanding_output = await self.understanding_module.analyze(user_question, table_image)
                 understanding_duration = time.time() - understanding_start_time
 
                 print(f"✅ [STAGE 1] Understanding completed in {understanding_duration:.2f}s")

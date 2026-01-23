@@ -39,7 +39,7 @@ class UnderstandingModule:
         self.workbook = workbook
         self.excel_context_understanding = excel_context_understanding
 
-    def analyze(self, user_question: str, table_image: Optional[Image.Image] = None) -> str:
+    async def analyze(self, user_question: str, table_image: Optional[Image.Image] = None) -> str:
         """
         Analyze the user question and Excel workbook to generate comprehensive understanding.
 
@@ -53,7 +53,7 @@ class UnderstandingModule:
         logger.info("Starting understanding analysis")
 
         messages = self._create_multimodal_prompt(user_question, self.excel_context_understanding, table_image)
-        understanding_output = self._get_llm_response(messages)
+        understanding_output = await self._get_llm_response(messages)
 
         logger.info("Understanding analysis completed")
         return understanding_output
@@ -113,13 +113,13 @@ Provide a comprehensive overview including:
 
         return messages
 
-    def _get_llm_response(self, messages: list, max_retries: int = 5, base_delay: float = 1.0) -> str:
+    async def _get_llm_response(self, messages: list, max_retries: int = 5, base_delay: float = 1.0) -> str:
         """Get response from the multimodal LLM with retry logic."""
         last_exception = None
 
         for attempt in range(max_retries):
             try:
-                response = self.client.chat.completions.create(
+                response = await self.client.chat.completions.create(
                     model=self.deployment,
                     messages=messages,
                 )
