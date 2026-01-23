@@ -253,10 +253,10 @@ Please be thorough and objective in your assessment. If issues are found, focus 
                 print("="*50)
                 print("VALIDATION MODULE LLM RESPONSE CONTENT:")
                 print("="*50)
-                print(response.choices[0].message.content)
+                print(response.content)
                 print("="*50)
 
-                return response.choices[0].message.content
+                return response.content
 
             except Exception as e:
                 last_exception = e

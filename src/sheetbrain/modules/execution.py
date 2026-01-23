@@ -384,15 +384,14 @@ Please start by exploring the data structure and then work toward answering the 
                 )
 
                 # Extract message
-                choice = response.choices[0]
-                message = choice.message
+                content = response.content
 
                 print("="*50)
                 print("EXECUTION MODULE LLM RESPONSE:")
                 print("="*50)
-                print(message.content)
+                print(content)
                 print("="*50)
-                return message
+                return response
 
             except RateLimitError as e:
                 last_exception = e
