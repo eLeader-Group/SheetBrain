@@ -472,8 +472,8 @@ Please address these specific points in your new analysis approach."""
             from openpyxl.utils import range_boundaries, get_column_letter, column_index_from_string
             import pandas as pd
             import numpy as np
-            import matplotlib
-            matplotlib.use('Agg')
+            # import matplotlib
+            # matplotlib.use('Agg')
 
             logger.info(f"Loading Excel file: {self.excel_path}")
             start_time = time.time()

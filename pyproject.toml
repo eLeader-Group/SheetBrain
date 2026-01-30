@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SheetBrain"
-version = "0.1.3"
+version = "0.1.4"
 description = "SheetBrain fork"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -39,8 +39,8 @@ sheetbrain = [
     "pillow>=10.0.0",
     "tiktoken>=0.5.0",
 
-    # Visualization
-    "matplotlib>=3.7.0",
+#    # Visualization
+#    "matplotlib>=3.7.0",
 
     # Optional dependencies for enhanced functionality
     "python-dotenv>=1.0.0"

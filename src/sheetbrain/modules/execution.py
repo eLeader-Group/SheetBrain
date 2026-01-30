@@ -88,11 +88,6 @@ Available Excel Helper Functions:
     - `alignment`: Text alignment ('left', 'center', 'right')
   - **Output:** String message confirming formatting applied to specified range
 
-- `save_plot_to_excel(sheet_name, cell_position='A1', figsize=(10,6), dpi=100)`: Save current matplotlib plot to Excel sheet
-  - **Usage:** `result = save_plot_to_excel("Charts", "D5", figsize=(8,6))`
-  - **Prerequisites:** Create matplotlib plot first with `plt.plot()` or similar
-  - **Output:** String message: `"Chart saved to Charts!D5"` or `"No plot to save"`
-
 - `save_workbook()`: Save workbook to file with '_output' postfix
   - **Usage:** `filename = save_workbook()`
   - **Output:** Returns saved filename string: `"/path/to/original_output.xlsx"` and prints confirmation message

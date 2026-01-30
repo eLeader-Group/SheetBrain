@@ -9,7 +9,7 @@ import tempfile
 import io
 from typing import List, Optional, Dict, Union, Any
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from openpyxl.utils import get_column_letter, column_index_from_string
 from openpyxl.utils.cell import coordinate_to_tuple
 from openpyxl.styles import PatternFill, Font, Border, Side, Alignment
@@ -232,39 +232,39 @@ class ExcelToolkit:
 
         return df
 
-    def save_plot_to_excel(self, sheet_name: str, cell_position: str = "A1",
-                          figsize: tuple = (10, 6), dpi: int = 100) -> str:
-        """Save the current matplotlib plot to an Excel sheet."""
-        if sheet_name not in self.workbook.sheetnames:
-            self.workbook.create_sheet(sheet_name)
-        sheet = self.workbook[sheet_name]
-
-        fig = plt.gcf()
-        if fig.get_axes():
-            fig.set_size_inches(figsize)
-            plt.tight_layout()
-
-            img_buffer = io.BytesIO()
-            plt.savefig(img_buffer, format='png', dpi=dpi, bbox_inches='tight')
-            img_buffer.seek(0)
-
-            pil_img = PILImage.open(img_buffer)
-
-            with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp_file:
-                pil_img.save(tmp_file.name, 'PNG')
-                tmp_filename = tmp_file.name
-
-            img = Image(tmp_filename)
-            sheet.add_image(img, cell_position)
-
-            self._temp_files.append(tmp_filename)
-
-            print(f"✅ Chart saved to sheet '{sheet_name}' at position {cell_position}")
-            plt.close(fig)
-            return f"Chart saved to {sheet_name}!{cell_position}"
-        else:
-            print("⚠️ No plot found to save. Create a plot first.")
-            return "No plot to save"
+    # def save_plot_to_excel(self, sheet_name: str, cell_position: str = "A1",
+    #                       figsize: tuple = (10, 6), dpi: int = 100) -> str:
+    #     """Save the current matplotlib plot to an Excel sheet."""
+    #     if sheet_name not in self.workbook.sheetnames:
+    #         self.workbook.create_sheet(sheet_name)
+    #     sheet = self.workbook[sheet_name]
+    #
+    #     fig = plt.gcf()
+    #     if fig.get_axes():
+    #         fig.set_size_inches(figsize)
+    #         plt.tight_layout()
+    #
+    #         img_buffer = io.BytesIO()
+    #         plt.savefig(img_buffer, format='png', dpi=dpi, bbox_inches='tight')
+    #         img_buffer.seek(0)
+    #
+    #         pil_img = PILImage.open(img_buffer)
+    #
+    #         with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp_file:
+    #             pil_img.save(tmp_file.name, 'PNG')
+    #             tmp_filename = tmp_file.name
+    #
+    #         img = Image(tmp_filename)
+    #         sheet.add_image(img, cell_position)
+    #
+    #         self._temp_files.append(tmp_filename)
+    #
+    #         print(f"✅ Chart saved to sheet '{sheet_name}' at position {cell_position}")
+    #         plt.close(fig)
+    #         return f"Chart saved to {sheet_name}!{cell_position}"
+    #     else:
+    #         print("⚠️ No plot found to save. Create a plot first.")
+    #         return "No plot to save"
 
     def save_workbook(self) -> str:
         """Save the workbook to file."""
