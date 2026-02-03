@@ -616,7 +616,7 @@ class ExcelToolkit:
             'inspector_attribute': self.inspector_attribute,
             'search': self.search,
             'get_sheet_as_dataframe': self.get_sheet_as_dataframe,
-            'save_plot_to_excel': self.save_plot_to_excel,
+            # 'save_plot_to_excel': self.save_plot_to_excel,
             'save_workbook': self.save_workbook,
             #additional editing tools
             'insert_rows': self.insert_rows,
