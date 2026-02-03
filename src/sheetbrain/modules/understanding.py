@@ -123,7 +123,7 @@ Provide a comprehensive overview including:
                     model=self.deployment,
                     messages=messages,
                 )
-                return response.content
+                return response.content[0].get('text')
 
             except RateLimitError as e:
                 last_exception = e

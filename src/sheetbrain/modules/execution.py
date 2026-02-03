@@ -386,7 +386,7 @@ Please start by exploring the data structure and then work toward answering the 
                 print("="*50)
                 print(content)
                 print("="*50)
-                return response
+                return response.content[0].get('text')
 
             except RateLimitError as e:
                 last_exception = e
