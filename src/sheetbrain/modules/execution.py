@@ -211,7 +211,7 @@ Please start by exploring the data structure and then work toward answering the 
                 self.conversation_history.append(response_message)
 
                 # Parse response for code action or final answer
-                thought, code_action = self._parse_llm_response(response_message.content)
+                thought, code_action = self._parse_llm_response(response_message)
 
                 if code_action is None:
                     # No code to execute, check if it's a final answer
