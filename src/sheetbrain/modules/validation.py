@@ -256,7 +256,7 @@ Please be thorough and objective in your assessment. If issues are found, focus 
                 print(response.content)
                 print("="*50)
 
-                return response.content[0].get('text')
+                return response.content
 
             except Exception as e:
                 last_exception = e
