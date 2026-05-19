@@ -250,13 +250,18 @@ Please be thorough and objective in your assessment. If issues are found, focus 
                     messages=messages,
                 )
 
+                if isinstance(response.content, str):
+                    content = response.content
+                else:
+                    content = response.content[0].get("text")
+
                 print("="*50)
                 print("VALIDATION MODULE LLM RESPONSE CONTENT:")
                 print("="*50)
-                print(response.content)
+                print(content)
                 print("="*50)
 
-                return response.content
+                return content
 
             except Exception as e:
                 last_exception = e

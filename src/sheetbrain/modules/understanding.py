@@ -123,7 +123,11 @@ Provide a comprehensive overview including:
                     model=self.deployment,
                     messages=messages,
                 )
-                return response.content
+                if isinstance(response.content, str):
+                    content = response.content
+                else:
+                    content = response.content[0].get("text")
+                return content
 
             except RateLimitError as e:
                 last_exception = e

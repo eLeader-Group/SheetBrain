@@ -379,14 +379,17 @@ Please start by exploring the data structure and then work toward answering the 
                 )
 
                 # Extract message
-                content = response.content
+                if isinstance(response.content, str):
+                    content = response.content
+                else:
+                    content = response.content[0].get("text")
 
                 print("="*50)
                 print("EXECUTION MODULE LLM RESPONSE:")
                 print("="*50)
                 print(content)
                 print("="*50)
-                return response.content
+                return content
 
             except RateLimitError as e:
                 last_exception = e
